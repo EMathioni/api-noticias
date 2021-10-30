@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>API Notícias</title>
+  <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
+</head>
+
+<body onload="statusMsg('{{ confirm }}')">
+<center>
+  <header>
+    <h1>News - Deletar notícia</h1>
+    <div>
+      <a href="/">Página principal</a> <strong>|</strong> <a href="/create">Criar notícia</a> <strong>|</strong>
+        <a href="/update">Atualizar notícia</a> <strong>|</strong>
+      <a href="/api">API</a>
+    </div>
+  </header>
+  </center>
+
+  <main>
+      <center>
+      <form onload="" action="/delete" method="get">
+        <center>
+      <div>
+        <label>Pesquisar notícias:</label>
+        <input type="text" name="pesquisa" /> <button>Pesquisar</button>
+      </div>
+            {% for result in all_results %}
+            <div>
+                <a href="/delete/{{result._id}}">
+                    <h3>{{result.title}}</h3>
+                </a>
+                <h4>Clique no título para remover a notícia</h4>
+            </div>
+      <hr />
+            {% endfor %}
+
+            {% if counter > 0 %}
+            <p>{{counter}} resultado(s) encontrados(s)</p>
+            {% endif %}
+            {% if msg_deleted == 0 %}
+            <p>1 resultado deletado</p>
+            {% endif %}
+        </center>
+        </form>
+          </center>
+  </main>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Notícia</title>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
+</head>
+<body onload="statusMsg('{{ success }}')">
+<header>
+    <h1>News - Atualizar notícia</h1>
+</header>
+<center>
+<form action="/updated/{{id}}" method="get">
+    <center>
+    <div>
+        <label>Novo titulo:</label>
+        <input type="text" name="title" />
+    </div>
+    <div>
+        <label>Novo texto:</label>
+        <textarea name="text"></textarea>
+    </div>
+    <div>
+        <label>Novo autor:</label>
+        <input type="text" name="author" />
+    </div>
+        <button>Atualizar</button> <input type="button" onclick="location.href='/';" value="Voltar" />
+        </center>
+</form>
+        {% if msg == msg %}
+            <p>{{msg}}</p>
+            {% endif %}
+    </center>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+    function statusMsg(success){
+        if(success == "True"){
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Sucesso!',
+              text: 'Notícia atualizada!',
+              showConfirmButton: true,
+            })
+        }
+        else if(success == "False"){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Todos os campos devem ser preenchidos!',
+              showConfirmButton: true,
+            })
+        }
+    }
+  </script>
+</body>
+</html>

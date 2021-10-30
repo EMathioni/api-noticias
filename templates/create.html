@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Notícia</title>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
+</head>
+<body onload="statusMsg('{{ success }}')">
+<header>
+    <h1>News - Criar notícia</h1>
+    <div>
+      <a href="/">Página principal</a> <strong>|</strong> <a href="/update">Atualizar notícia</a> <strong>|</strong>
+      <a href="/delete">Deletar notícia</a> <strong>|</strong> <a href="/api">API</a>
+    </div>
+</header>
+<center>
+<form action="/creating" method="get">
+    <center>
+    <div>
+        <label>Titulo:</label>
+        <input type="text" name="title" />
+    </div>
+    <div>
+        <label>Texto:</label>
+        <textarea name="text"></textarea>
+    </div>
+    <div>
+        <label>Autor:</label>
+        <input type="text" name="author" />
+    </div>
+        <button>Criar</button> <input type="button" onclick="location.href='/';" value="Voltar" />
+        </center>
+</form>
+    </center>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+    function statusMsg(success){
+        if(success == "True"){
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Sucesso!',
+              text: 'Notícia criada!',
+              showConfirmButton: true,
+            })
+        }
+        else if(success == "False"){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Todos os campos devem ser preenchidos!',
+              showConfirmButton: true,
+            })
+        }
+    }
+  </script>
+</body>
+</html>

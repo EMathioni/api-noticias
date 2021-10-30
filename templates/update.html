@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Notícia</title>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
+    <style type="text/css">
+    #buscar{
+        height:30px;opacity:.5;
+    }
+</style>
+</head>
+<body onload="statusMsg('{{ success }}')">
+<header>
+    <h1>News - Atualizar notícia</h1>
+    <div>
+      <div>
+      <a href="/">Página principal</a> <strong>|</strong> <a href="/create">Criar notícia</a> <strong>|</strong>
+      <a href="/delete">Deletar notícia</a> <strong>|</strong> <a href="/api">API</a>
+    </div>
+    </div>
+</header>
+<center>
+<form action="/updating" method="get">
+    <center>
+    <div>
+        <label>Pesquisar notícias:</label>
+        <input type="text" name="search" placeholder="Busque a noticia a atualizar" id="buscar" /> <button>Pesquisar</button>
+        <input type="button" onclick="location.href='/';" value="Voltar" />
+      </div>
+        </div>
+            {% for result in result_list %}
+            <div>
+                <a href="/updating/{{result._id}}">
+                    <h3>{{result.title}}</h3>
+                </a>
+                <h4>Clique no título para editar a notícia</h4>
+            </div>
+      <hr />
+            {% endfor %}
+        </center>
+</form>
+    </center>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+    function statusMsg(success){
+        if(success == "True"){
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Sucesso!',
+              text: 'Notícia criada!',
+              showConfirmButton: true,
+            })
+        }
+        else if(success == "False"){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Todos os campos devem ser preenchidos!',
+              showConfirmButton: true,
+            })
+        }
+    }
+  </script>
+</body>
+</html>

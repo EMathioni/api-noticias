@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, jsonify
-from pymongo import MongoClient
+from pymongo import MongoClient, TEXT
 import datetime
 from bson.objectid import ObjectId
 
@@ -11,6 +11,7 @@ app = Flask(__name__)
 def index():
     search = request.args.get('pesquisa')
     doc = mdb.noticia
+    doc.create_index([('title', TEXT), ('text', TEXT), ('author', TEXT)], default_language='english')
     counter = doc.find({"$text": {"$search": f"{search}"}}).count()
     all_results_list = []
     if counter == 0:
